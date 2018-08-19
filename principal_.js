@@ -1,0 +1,258 @@
+function fobtenerPosicion(el) {
+	for(var lx=0,ly=0; el!=null; lx+=el.offsetLeft, ly+=el.offsetTop, el=el.offsetParent);
+	return {x:lx,y:ly}
+}
+function fmostrar(vid) {
+	var vdividir = vid;
+	var vfrag = vdividir.split("_");
+	var vcontrol = "";
+	if (vfrag[0] == "tdetalle") {
+		vcontrol = "tbdetalle_";
+	}else if (vfrag[0] == "tventa") {
+		vcontrol = "tbventa_";
+	}else if (vfrag[0] == "tusuario") {
+		vcontrol = "tbusuario_";
+	}
+	var vtabla = document.getElementById(vcontrol + vfrag[1]); //control posicionar
+	
+	if (vtabla.style.display == "block") {
+		vtabla.style.display = "none";
+		return;
+	}
+	
+	vtabla.style.display = "block"; //mostrar tabla
+	var vBuscarOpt = document.getElementById(vid);
+	var pos = fobtenerPosicion(vBuscarOpt);
+	
+	var vancho = vtabla.offsetWidth;
+	var valto = vBuscarOpt.offsetHeight;
+	//var valto1 = vBuscarOpt.offsetWidth;
+	
+	vtabla.style.left = pos.x + "px";
+	vtabla.style.top = (pos.y + valto) + "px";
+}
+
+function fordenaridventa(vitem1,x) {
+	var vid1 = document.getElementById('tbventa_' + vitem1); vid1.id = 'tbventa_' + x;
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('npreciou_' + vitem1); vid1.id = 'npreciou_' + x;
+	vid1 = document.getElementById('lnpreciou' + vitem1); vid1.htmlFor = 'npreciou_' + x;
+	vid1 = document.getElementById('npreciomayor_' + vitem1); vid1.id = 'npreciomayor_' + x;
+	vid1 = document.getElementById('lnpreciomayor_' + vitem1); vid1.htmlFor = 'npreciomayor_' + x;
+	vid1 = document.getElementById('ncantmayor_' + vitem1); vid1.id = 'ncantmayor_' + x;
+	vid1 = document.getElementById('lncantmayor_' + vitem1); vid1.htmlFor = 'ncantmayor_' + x;
+	vid1 = document.getElementById('ndescuentomax_' + vitem1); vid1.id = 'ndescuentomax_' + x;
+	vid1 = document.getElementById('lndescuentomax_' + vitem1); vid1.htmlFor = 'ndescuentomax_' + x;
+	vid1 = document.getElementById('cvender_' + vitem1); vid1.id = 'cvender_' + x;
+	vid1 = document.getElementById('lcvender_' + vitem1); vid1.htmlFor = 'cvender_' + x;
+}
+function fordenaridusuario(vitem1,x) {
+	vid1 = document.getElementById('tbusuario_' + vitem1); vid1.id = 'tbusuario_' + x;
+	//vid1.setAttribute("style","z-index: "+(vz_index+2)+";");
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('rtodos_' + vitem1); vid1.id = 'rtodos_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrtodos_' + vitem1); vid1.htmlFor = 'rtodos_' + x;
+	vid1 = document.getElementById('rgrupo_' + vitem1); vid1.id = 'rgrupo_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrgrupo_' + vitem1); vid1.htmlFor = 'rgrupo_' + x;
+	vid1 = document.getElementById('rpersonalizado_' + vitem1); vid1.id = 'rpersonalizado_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrpersonalizado_' + vitem1); vid1.htmlFor = 'rpersonalizado_' + x;
+	vid1 = document.getElementById('spersonalizado_' + vitem1); vid1.id = 'spersonalizado_' + x;
+}
+function fordenariddetalle(vitem1,x) {
+	var vid1 = document.getElementById('tbdetalle_' + vitem1); vid1.id = 'tbdetalle_' + x;
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('tcodint_' + vitem1); vid1.id = 'tcodint_' + x;
+	vid1 = document.getElementById('ltcodint_' + vitem1); vid1.htmlFor = 'tcodint_' + x;
+	vid2 = document.getElementById('tcategoria_' + vitem1); vid2.id = 'tcategoria_' + x;
+	vid2 = document.getElementById('ltcategoria_' + vitem1); vid2.htmlFor = 'tcategoria_' + x;
+	vid3 = document.getElementById('tmedida_' + vitem1); vid3.id = 'tmedida_' + x;
+	vid3 = document.getElementById('ltmedida_' + vitem1); vid3.htmlFor = 'tmedida_' + x;
+	vid4 = document.getElementById('tmarca_' + vitem1); vid4.id = 'tmarca_' + x;
+	vid4 = document.getElementById('ltmarca_' + vitem1); vid4.htmlFor = 'tmarca_' + x;
+	vid4 = document.getElementById('tmarcas_' + vitem1); vid4.id = 'tmarcas_' + x;
+	vid4 = document.getElementById('ltmarcas_' + vitem1); vid4.htmlFor = 'tmarcas_' + x;
+	vid5 = document.getElementById('tmodelo_' + vitem1); vid5.id = 'tmodelo_' + x;
+	vid5 = document.getElementById('ltmodelo_' + vitem1); vid5.htmlFor = 'tmodelo_' + x;
+	vid6 = document.getElementById('tano_' + vitem1); vid6.id = 'tano_' + x;
+	vid6 = document.getElementById('ltano_' + vitem1); vid6.htmlFor = 'tano_' + x;
+	vid7 = document.getElementById('tmade_' + vitem1); vid7.id = 'tmade_' + x;
+	vid7 = document.getElementById('ltmade' + vitem1); vid7.htmlFor = 'tmade_' + x;
+}
+function eliminarfila(vid) {
+	var vitem = parseInt(vid.id);
+	var tb2 = document.getElementById('tabletwo');
+	var vlongitud = parseInt(tb2.rows.length);
+	var vitem1 = 0;
+	if (vlongitud == 1) {
+		return;
+	}
+	//eliminar tablas
+	vid1 = document.getElementById('tbdetalle_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	vid1 = document.getElementById('tbventa_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	vid1 = document.getElementById('tbusuario_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	
+	tb2.deleteRow(vitem); //elimina una fila
+	vlongitud = vlongitud - 1;
+	for (i = vitem; i < vlongitud; i++) {
+		//ordenar el id de la fila
+		vitem1 = i + 1;
+		tb2.rows[i].cells[0].innerHTML = (i + 1); //escribir el item
+		
+		vid1 = document.getElementById(vitem1); vid1.id = i;
+		vid1 = document.getElementById('tbitem_' + vitem1); vid1.id = 'tbitem_' + i;
+		vid1 = document.getElementById('tcodigo_' + vitem1); vid1.id = 'tcodigo_' + i;
+		vid1 = document.getElementById('ncant_' + vitem1); vid1.id = 'ncant_' + i;
+		vid1 = document.getElementById('tadesc_' + vitem1); vid1.id = 'tadesc_' + i;
+		vid1 = document.getElementById('tdetalle_' + vitem1); vid1.id = 'tdetalle_' + i;
+		vid1 = document.getElementById('tventa_' + vitem1); vid1.id = 'tventa_' + i;
+		vid1 = document.getElementById('tusuario_' + vitem1); vid1.id = 'tusuario_' + i;
+		vid1 = document.getElementById('llote_' + vitem1); vid1.id = 'llote_' + i;
+		vid1 = document.getElementById('ttotal_' + vitem1); vid1.id = 'ttotal_' + i;
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenaridventa(vitem1,i);
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenaridusuario(vitem1,i);
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenariddetalle(vitem1,i);
+	}
+}
+function fcrearfilacelda() {
+	var tb1 = document.getElementById('tabletwo');
+	var row = tb1.insertRow(-1); //Crear al final una fila
+	var numfilas = parseInt(tb1.rows.length);
+	var numfilas1 = numfilas - 1;
+	for (i = 0; i < 10; i++) { //crear celda
+		var celdas = row.insertCell(i);
+		tb1.rows[(numfilas - 1)].cells[i].setAttribute("class","td" + (i + 1));
+	}
+	//recuperar el valor z-index
+	var vz_index = parseInt(tb1.style.zIndex);
+	vz_index += 3;
+	tb1.rows[numfilas1].cells[0].id = "tbitem_" + numfilas1;
+	tb1.rows[numfilas1].cells[0].innerHTML = numfilas;
+	tb1.rows[numfilas1].cells[0].setAttribute("align","center");
+	
+	tb1.rows[numfilas1].cells[1].innerHTML = "<Input Id=tcodigo_" + numfilas1 + ' Type=Text Style="Width: 87px;" Align=Center />';
+	tb1.rows[numfilas1].cells[2].innerHTML = "<Input Id=ncant_" + numfilas1 + ' Type=Number Value=1 Min=1 Align=Right pattern="d{12}" Style="Width: 60px;" />';
+	tb1.rows[numfilas1].cells[3].innerHTML = '<TextArea Id=tadesc_' + numfilas1 + ' rows=1 Style="Width: 122px;"></TextArea>';
+	
+	tb1.rows[numfilas1].cells[4].innerHTML = "<Input Id=tdetalle_" + numfilas1 + ' Type=Button readonly="readonly" Style="Width: 80px;" onClick="fmostrar(this.id)" />';
+	tbs = document.getElementById('mistablas');
+	tbs.innerHTML += "<table Id=tbdetalle_" + numfilas1 + ' cellspacing=0 Style="border:1px solid #000000; background:#697510; position:fixed; display:none; z-index:' + vz_index + ';" ><tr><td><label id=ltcodint_' + numfilas1 + ' for="tcodint_' + numfilas1 + '" Style="font-size: 14px;">Cod_Int:</label></td><td><Input Type=Text Id=tcodint_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=ltcategoria_' + numfilas1 + ' for="tcategoria_' + numfilas1 + '" Style="font-size: 14px;">Categoria:</label></td><td><Input Type=Text Id=tcategoria_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" onblur="fver(this)" /></td></tr><tr><td><label Id=ltmedida_' + numfilas1 + ' for="tmedida_' + numfilas1 + '" Style="font-size: 14px;">Medida:</label></td><td><Input Type=Text Id=tmedida_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=lmarca_' + numfilas1 + ' for="tmarca_' + numfilas1 + '" Style="font-size: 14px;">Marca:</label></td><td><Input Type=Text Id=tmarca_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=ltmarcas_' + numfilas1 + ' for="tmarcas_' + numfilas1 + '" Style="font-size: 14px;">Marcas:</label></td><td><Input Type=Text Id=tmarcas_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=ltmodelo_' + numfilas1 + ' for="tmodelo_' + numfilas1 + '" Style="font-size: 14px;">Modelo:</label></td><td><Input Type=Text Id=tmodelo_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=ltano_' + numfilas1 + ' for="tano_' + numfilas1 + '" Style="font-size: 14px;">Año:</label></td><td><Input Type=Number Id=tano_' + numfilas1 + ' Min=0 pattern="d{12}" Style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id=ltmade_' + numfilas1 + ' for="tmade_' + numfilas1 + '" Style="font-size: 14px;">Made In:</label></td><td><Input Type=Text Id=tmade_' + numfilas1 + ' Style="Width: 87px; font-size: 10px;" /></td></tr></table>';
+	
+	tb1.rows[numfilas1].cells[5].innerHTML = "<Input Id=tventa_" + numfilas1 + ' Type=Button readonly="readonly" Style="Width: 80px;" onClick="fmostrar(this.id)" />';
+	tbs.innerHTML +="<table Id=tbventa_" + numfilas1 + ' cellspacing=0 Style="position:fixed; background:#697510; display:none; z-index:' + (vz_index + 1) + ';><tr><td><label Id=lnpreciou_' + numfilas1 + ' for="npreciou_' + numfilas1 + ' Style="font-size: 14px;">Precio Unitario:</label></td><td><Input Type=Number Id=npreciou_' + numfilas1 + ' Value=0 Min=0 pattern="d{12}" Style="Width: 52; font-size: 10px;" onblur="fver(this)" /></td></tr><tr><td><label Id=lnpreciomayor_' + numfilas1 + ' for="npreciomayor_' + numfilas1 + '" Style="font-size: 14px;">Precio x Mayor:</label></td><td><Input Type=Number Id=npreciomayor_' + numfilas1 + ' Value=0 Min=0 pattern="d{12}" Style="Width:52; font-size: 10px;" /></td></tr><tr><td><label Id=lncantmayor_' + numfilas1 + ' for="ncantmayor_' + numfilas1 + '" Style="font-size: 14px;">Cant. x Mayor:</label></td><td><Input Type=Number Id=ncantmayor_' + numfilas1 + ' Value=0 Min=0 pattern="d{12}" Style="Width: 52; font-size: 10px;" /></td></tr><tr><td><label Id=lndescuentomax_' + numfilas1 + ' for="ndescuentomax_' + numfilas1 + '" Style="font-size: 14px;">Descuento Max.:</label></td><td><Input Type=Number Id=ndescuentomax_' + numfilas1 + ' Value=0 Min=0 pattern="d{12}" Style="Width: 52px; font-size: 10px;" /></td></tr><tr><td Style="font-size: 14px;">Vender:</td><td Align=Left><Input Type=Checkbox Id=cvender_' + numfilas1 + ' checked /><label Id=lcvender_' + numfilas1 + ' for="cvender_' + numfilas1 + '" Style="font-size: 14px;">SI/NO</label></td></tr></table>';
+	
+	tb1.rows[numfilas1].cells[6].innerHTML = "<Input Id=tusuario_" + numfilas1 + ' Type=Button readonly="readonly" Style="Width: 80px;" onClick="fmostrar(this.id)" />';
+	tbs.innerHTML +="<table Id=tbusuario_" + numfilas1 + " cellspacing=0 Style=\"position:fixed; background:#697510; display:none; z-index:" + (vz_index + 2) + ";\"><tr><td><Input Type=Radio Id=rtodos_" + numfilas1 + " name=\"rusuario_" + numfilas1 + "\" checked /><label Id=lrtodos_" + numfilas1 + " for=\"rtodos_" + numfilas1 + "\" Style=\"font-size: 14px;\">Todos</label></td></tr><tr><td><Input Type=Radio Id=rgrupo_" + numfilas1 + " name=\"rusuario_" + numfilas1 + "\" /><label Id=lrgrupo_" + numfilas1 + " for=\"rgrupo_" + numfilas1 + "\" Style=\"font-size: 14px;\">Grupos</label></td></tr><tr><td><Input Type=Radio Id=rpersonalizado_" + numfilas1 + " name=\"rusuario_" + numfilas1 + "\" /><label Id=lrpersonalizado_" + numfilas1 + " for=\"rpersonalizado_" + numfilas1 + "\" Style=\"font-size: 14px;\">Personalizado:</label></td></tr><tr><td><Input Type=Search Id=spersonalizado_" + numfilas1 + " Disabled Style=\"font-size: 10px\" /></td></tr></table>";
+	
+	tb1.rows[numfilas1].cells[7].innerHTML = "<input Id=llote_" + numfilas1 + ' type=text list="llotes_' + numfilas1 + '" Style="Width: 50px;" />';
+	tb1.rows[numfilas1].cells[8].innerHTML = "<Input Id=ttotal_" + numfilas1 + ' Type=Text readonly="readonly" Align=Right Style="Width: 68px;" />';
+	tb1.rows[numfilas1].cells[9].innerHTML = "<Input Id=" + numfilas1 + ' Type=Button Value="x" onClick="eliminarfila(this)" />';
+}
+
+function fucambio(vid) { //onBlur del control de texto de USUARIO
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	
+	var vfuente = document.getElementById("tusuario_" + vfrag[1]); //control recuperar
+	vfuente.value = vid.value;
+}
+
+function fver(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	var vcontrol = "";
+	if (vfrag[0] == "tcategoria") 
+	{
+		vcontrol = "tdetalle_";
+	} else if (vfrag[0] == "npreciou") 
+	{
+		vcontrol = "tventa_";
+	} else if (vfrag[0] == "tusuario") 
+	{
+		vcontrol = "tbusuario_";
+	}
+	var vfuente = document.getElementById(vcontrol + vfrag[1]); //control recuperar
+	vfuente.value = vid.value;
+	
+	fcalcular(vid); //CALCULAR
+}
+
+function fcalcular(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	document.getElementById("ttotal_" + vfrag[1]).value = document.getElementById("tventa_" + vfrag[1]).value * parseInt(document.getElementById("ncant_" + vfrag[1]).value);
+	
+	var vtotal = 0.1;
+	vtotal = 0;
+	var numfilas = parseInt(document.getElementById("tabletwo").rows.length - 1);
+	for (i=0; i <= numfilas; i++) {
+		vtotal += parseFloat(document.getElementById("ttotal_" + i).value);
+	}
+	
+	document.getElementById("tdtotal").innerHTML = vtotal.toFixed(3);
+}
+
+function fusuarios(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	if (vfrag[0] == "rpersonalizado")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = false;
+		document.getElementById("tusuario_" + vfrag[1]).value = document.getElementById("spersonalizado_" + vfrag[1]).value;
+	}
+	if (vfrag[0] == "rtodos")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = true;
+		document.getElementById("tusuario_" + vfrag[1]).value = "todos";
+	}
+	if (vfrag[0] == "rgrupo")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = false;
+		document.getElementById("tusuario_" + vfrag[1]).value = document.getElementById("spersonalizado_" + vfrag[1]).value;
+	}
+}
+
+function ffac_rec(vid) {
+	var vlabel = document.getElementById("lfactura");
+	//var vtableone = document.getElementById("tableone");
+	var vcaption = document.getElementById("ctableone");
+	if (vid.id == "rfac")
+	{
+		vlabel.innerHTML = " <b>-Factura:</b>";
+		//vtableone.summary = "FACTURA";
+		vcaption.innerHTML = "FACTURA";
+		document.getElementById("nfactura").placeholder = "# Factura";
+	}else{
+		vlabel.innerHTML = " <b>-Recibo:</b>";
+		//vtableone.symmary = "RECIBO";
+		vcaption.innerHTML = "RECIBO";
+		document.getElementById("nfactura").placeholder = "# Recibo";
+	}
+}
+
+function finicio() {
+	var currentTime = new Date();
+	var vmes = currentTime.getMonth() + 1;
+	var vdia = currentTime.getDate();
+	if (vmes < 10)
+	{
+		vmes = "0" + vmes;
+	}
+	if (vdia < 10)
+	{
+		vdia = "0" + vdia;
+	}
+	var vfecha = currentTime.getFullYear() + "-" + vmes + "-" + vdia;
+	document.getElementById("dfecha").value = vfecha;
+}

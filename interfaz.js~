@@ -1,0 +1,256 @@
+function fobtenerPosicion(el) {
+	for(var lx=0,ly=0; el!=null; lx+=el.offsetLeft, ly+=el.offsetTop, el=el.offsetParent);
+	return {x:lx,y:ly}
+}
+function fmostrar(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	var vidcontrol = "";
+	var vcontrol = "";
+	if (vfrag[0] == "tdetalle") {
+		vcontrol = "tbdetalle_";
+		vidcontrol ="tcategoria_";
+	}
+	else if (vfrag[0] == "tventa") {
+		vcontrol = "tbventa_";
+		vidcontrol ="npreciou_";
+	}
+	else if (vfrag[0] == "tusuario") {
+		vcontrol = "tbusuario_";
+		vidcontrol ="rtodos_";
+	}
+	var vtabla = document.getElementById(vcontrol + vfrag[1]); //control posicionar
+	
+	if (vtabla.style.display == "block") {
+		vtabla.style.display = "none";
+		return;
+	}
+	
+	vtabla.style.display = "block"; //mostrar tabla
+	var vBuscarOpt = document.getElementById(vid.id);
+	var pos = fobtenerPosicion(vBuscarOpt);
+	
+	var vancho = vtabla.offsetWidth;
+	var valto = vBuscarOpt.offsetHeight;
+	//var valto1 = vBuscarOpt.offsetWidth;
+	
+	vtabla.style.left = pos.x + "px";
+	vtabla.style.top = (pos.y + valto) + "px";
+	document.getElementById(vidcontrol + vfrag[1]).focus();
+}
+
+function fordenaridventa(vitem1,x) {
+	var vid1 = document.getElementById('tbventa_' + vitem1); vid1.id = 'tbventa_' + x;
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('npreciou_' + vitem1); vid1.id = 'npreciou_' + x;
+	vid1 = document.getElementById('lnpreciou' + vitem1); vid1.htmlFor = 'npreciou_' + x;
+	vid1 = document.getElementById('npreciomayor_' + vitem1); vid1.id = 'npreciomayor_' + x;
+	vid1 = document.getElementById('lnpreciomayor_' + vitem1); vid1.htmlFor = 'npreciomayor_' + x;
+	vid1 = document.getElementById('ncantmayor_' + vitem1); vid1.id = 'ncantmayor_' + x;
+	vid1 = document.getElementById('lncantmayor_' + vitem1); vid1.htmlFor = 'ncantmayor_' + x;
+	vid1 = document.getElementById('ndescuentomax_' + vitem1); vid1.id = 'ndescuentomax_' + x;
+	vid1 = document.getElementById('lndescuentomax_' + vitem1); vid1.htmlFor = 'ndescuentomax_' + x;
+	vid1 = document.getElementById('cvender_' + vitem1); vid1.id = 'cvender_' + x;
+	vid1 = document.getElementById('lcvender_' + vitem1); vid1.htmlFor = 'cvender_' + x;
+}
+function fordenaridusuario(vitem1,x) {
+	vid1 = document.getElementById('tbusuario_' + vitem1); vid1.id = 'tbusuario_' + x;
+	//vid1.setAttribute("style","z-index: "+(vz_index+2)+";");
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('rtodos_' + vitem1); vid1.id = 'rtodos_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrtodos_' + vitem1); vid1.htmlFor = 'rtodos_' + x;
+	vid1 = document.getElementById('rgrupo_' + vitem1); vid1.id = 'rgrupo_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrgrupo_' + vitem1); vid1.htmlFor = 'rgrupo_' + x;
+	vid1 = document.getElementById('rpersonalizado_' + vitem1); vid1.id = 'rpersonalizado_' + x; vid1.name = 'rusuario_' + x;
+	vid1 = document.getElementById('lrpersonalizado_' + vitem1); vid1.htmlFor = 'rpersonalizado_' + x;
+	vid1 = document.getElementById('spersonalizado_' + vitem1); vid1.id = 'spersonalizado_' + x;
+}
+function fordenariddetalle(vitem1,x) {
+	var vid1 = document.getElementById('tbdetalle_' + vitem1); vid1.id = 'tbdetalle_' + x;
+	var vz_index = parseInt(vid1.style.zIndex) - 3; vid1.style.zIndex = vz_index;
+	
+	vid1 = document.getElementById('tcodint_' + vitem1); vid1.id = 'tcodint_' + x;
+	vid1 = document.getElementById('ltcodint_' + vitem1); vid1.htmlFor = 'tcodint_' + x;
+	vid2 = document.getElementById('tcategoria_' + vitem1); vid2.id = 'tcategoria_' + x;
+	vid2 = document.getElementById('ltcategoria_' + vitem1); vid2.htmlFor = 'tcategoria_' + x;
+	vid3 = document.getElementById('tmedida_' + vitem1); vid3.id = 'tmedida_' + x;
+	vid3 = document.getElementById('ltmedida_' + vitem1); vid3.htmlFor = 'tmedida_' + x;
+	vid4 = document.getElementById('tmarca_' + vitem1); vid4.id = 'tmarca_' + x;
+	vid4 = document.getElementById('ltmarca_' + vitem1); vid4.htmlFor = 'tmarca_' + x;
+	vid4 = document.getElementById('tmarcas_' + vitem1); vid4.id = 'tmarcas_' + x;
+	vid4 = document.getElementById('ltmarcas_' + vitem1); vid4.htmlFor = 'tmarcas_' + x;
+	vid5 = document.getElementById('tmodelo_' + vitem1); vid5.id = 'tmodelo_' + x;
+	vid5 = document.getElementById('ltmodelo_' + vitem1); vid5.htmlFor = 'tmodelo_' + x;
+	vid6 = document.getElementById('tano_' + vitem1); vid6.id = 'tano_' + x;
+	vid6 = document.getElementById('ltano_' + vitem1); vid6.htmlFor = 'tano_' + x;
+	vid7 = document.getElementById('tmade_' + vitem1); vid7.id = 'tmade_' + x;
+	vid7 = document.getElementById('ltmade' + vitem1); vid7.htmlFor = 'tmade_' + x;
+}
+function feliminarfila(vid) {
+	var vitem = parseInt(vid.id);
+	var tb2 = document.getElementById('tabletwo');
+	var vlongitud = parseInt(tb2.rows.length);
+	var vitem1 = 0;
+	if (vlongitud == 1) {
+		return;
+	}
+	//eliminar tablas
+	vid1 = document.getElementById('tbdetalle_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	vid1 = document.getElementById('tbventa_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	vid1 = document.getElementById('tbusuario_' + vitem); padre = vid1.parentNode; padre.removeChild(vid1);
+	
+	tb2.deleteRow(vitem); //elimina una fila
+	vlongitud = vlongitud - 1;
+	for (i = vitem; i < vlongitud; i++) {
+		//ordenar el id de la fila
+		vitem1 = i + 1;
+		tb2.rows[i].cells[0].innerHTML = (i + 1); //escribir el item
+		
+		vid1 = document.getElementById(vitem1); vid1.id = i;
+		vid1 = document.getElementById('tbitem_' + vitem1); vid1.id = 'tbitem_' + i;
+		vid1 = document.getElementById('tcodigo_' + vitem1); vid1.id = 'tcodigo_' + i;
+		vid1 = document.getElementById('ncant_' + vitem1); vid1.id = 'ncant_' + i;
+		vid1 = document.getElementById('tadesc_' + vitem1); vid1.id = 'tadesc_' + i;
+		vid1 = document.getElementById('tdetalle_' + vitem1); vid1.id = 'tdetalle_' + i;
+		vid1 = document.getElementById('tventa_' + vitem1); vid1.id = 'tventa_' + i;
+		vid1 = document.getElementById('tusuario_' + vitem1); vid1.id = 'tusuario_' + i;
+		vid1 = document.getElementById('llote_' + vitem1); vid1.id = 'llote_' + i;
+		vid1 = document.getElementById('ttotal_' + vitem1); vid1.id = 'ttotal_' + i;
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenaridventa(vitem1,i);
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenaridusuario(vitem1,i);
+	}
+	for (i = vitem; i < vlongitud; i++) {
+		vitem1 = i + 1;
+		fordenariddetalle(vitem1,i);
+	}
+}
+function fcrearfilacelda() {
+	var tb1 = document.getElementById('tabletwo');
+	var row = tb1.insertRow(-1); //Crear al final una fila
+	var numfilas = parseInt(tb1.rows.length);
+	var numfilas1 = numfilas - 1;
+	for (i = 0; i < 9; i++) { //crear celda
+		var celdas = row.insertCell(i);
+		tb1.rows[(numfilas - 1)].cells[i].setAttribute("class","td" + (i + 1));
+	}
+	//recuperar el valor z-index
+	//var vz_index = parseInt(tb1.style.zIndex);
+	//vz_index += 3;
+	var tbs = document.getElementById('mistablas');
+	tb1.rows[numfilas1].cells[0].id = "tbitem_" + numfilas1;
+	tb1.rows[numfilas1].cells[0].innerHTML = numfilas;
+	tb1.rows[numfilas1].cells[0].setAttribute("align","center");
+	
+	tb1.rows[numfilas1].cells[1].innerHTML = '<input type="Text" id="tcodigo_' + numfilas1 + '" style="Width: 87px; text-align: center; " />';
+	tb1.rows[numfilas1].cells[2].innerHTML = '<input type="Number" value="1" id="ncant_' + numfilas1 + '" style="Width: 60px; text-align: right; " onblur="fcaltotal(this);"  min="1" pattern="d{12}" />';
+	tb1.rows[numfilas1].cells[3].innerHTML = '<textarea rows="1"  id="tadesc_' + numfilas1 + '" style="Width: 122px;"></textarea>';
+	
+	tb1.rows[numfilas1].cells[4].innerHTML = '<input type="Button" id="tdetalle_' + numfilas1 + '" style="Width: 90px;"  readonly="readonly" onclick="fmostrar(this);" />';
+	fcreartbdetalle(numfilas1,tbs);
+	tb1.rows[numfilas1].cells[5].innerHTML = '<input type="Button" value="0" id="tventa_' + numfilas1 + '" style="Width: 80px;"  readonly="readonly" onclick="fmostrar(this);" />';
+	fcreartbventa(numfilas1,tbs);
+	tb1.rows[numfilas1].cells[6].innerHTML = '<input type="Button" value="todos" id="tusuario_' + numfilas1 + '" style="Width: 80px;" readonly="readonly" onclick="fmostrar(this);" />';
+	fcreartbusuario(numfilas1,tbs);
+	
+	tb1.rows[numfilas1].cells[7].innerHTML = '<input type="Text" value="0" id="ttotal_' + numfilas1 + '" style="Width: 68px; text-align: right; " readonly="readonly" />';
+	tb1.rows[numfilas1].cells[8].innerHTML = '<input type="Button" value="x" id="' + numfilas1 + '"  onclick="feliminarfila(this);" />';
+	//tb1.rows[numfilas1].cells[9].innerHTML = "<Input Id=" + numfilas1 + ' Type=Button Value="x" onClick="feliminarfila(this);" />';
+}
+function fcreartbdetalle(numfilas1, tbs){ //crear la tabla detalle
+	tbs.innerHTML += '<table cellpadding="0" cellspacing="0" style="position:fixed; background:#697510; display:none;"  id="tbdetalle_' + numfilas1 + '"><tr><td><label id="ltcodint_' + numfilas1 + '" for="tcodint_' + numfilas1 + '" style="font-size: 14px;">Cod_Int:</label></td><td><input type="Text" id="tcodint_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label id="ltcategoria_' + numfilas1 + '" for="tcategoria_' + numfilas1 + '" style="font-size: 14px; font-weight: bold;">Categoria:</label></td><td><input type="Text" id="tcategoria_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" onblur="fver(this);"  list="lcategoria" /></td></tr><tr><td><label id="ltmedida_' + numfilas1 + '" for="tmedida_' + numfilas1 + '" style="font-size: 14px; font-weight: bold;">Medida:</label></td><td><input type="Text" id="tmedida_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label id="ltdetalle_' + numfilas1 + '" for="tcdetalle_' + numfilas1 + '" style="font-size: 14px; font-weight: bold;">Detalle:</label></td><td><input type="Text" id="tcdetalle_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label id="ltmarca_' + numfilas1 + '" for="tmarca_' + numfilas1 + '" style="font-size: 14px; font-weight: bold;">Marca:</label></td><td><input type="Text" id="tmarca_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id="ltmade_' + numfilas1 + '" for="tmade_' + numfilas1 + '" Style="font-size: 14px;">Made In:</label></td><td><input type="Text" id="tmade_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id="ltmarcas_' + numfilas1 + '" for="tmarcas_' + numfilas1 + '" style="font-size: 14px;">Marcas:</label></td><td><input type="Text" id="tmarcas_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id="ltmodelo_' + numfilas1 + '" for="tmodelo_' + numfilas1 + '" Style="font-size: 14px;">Modelo:</label></td><td><input type="Text" id="tmodelo_' + numfilas1 + '" style="Width: 87px; font-size: 10px;" /></td></tr><tr><td><label Id="ltano_' + numfilas1 + '" for="tano_' + numfilas1 + '" Style="font-size: 14px;">A&ntilde;o:</label></td><td><input type="Number" value="1990" id="tano_' + numfilas1 + '" style="Width: 87px; font-size: 10px;"  min="1950" pattern="d{12}" /></td></tr></table>';
+}
+function fcreartbventa(numfilas1, tbs){
+	tbs.innerHTML += '<table cellpadding="0" cellspacing="0" style="position:fixed; background:#697510; display:none;"  id="tbventa_' + numfilas1 + '"><tr><td><label Id="lnpreciou_' + numfilas1 + '" for="npreciou_' + numfilas1 + '" Style="font-size: 14px;">Precio Unitario:</label></td><td style="text-align: right; "><input type="Number" value="0" id="npreciou_' + numfilas1 + '" style="Width: 52px; font-size: 10px;" onblur="fver(this);"  min="0" pattern="d{12}" /></td></tr><tr><td><label Id="lnpreciomayor_' + numfilas1 + '" for="npreciomayor_' + numfilas1 + '" Style="font-size: 14px;">Precio x Mayor:</label></td><td style="text-align: right; "><input type="Number" value="0" id="npreciomayor_' + numfilas1 + '" style="Width:52px; font-size: 10px;"  min="0" pattern="d{12}" /></td></tr><tr><td><label Id="lncantmayor_' + numfilas1 + '" for="ncantmayor_0" Style="font-size: 14px;">Cant. x Mayor:</label></td><td align="right"><input type="Number" value="0" id="ncantmayor_' + numfilas1 + '" style="Width: 52px; font-size: 10px;"  min="0" pattern="d{12}" /></td></tr><tr><td><label Id="lndescuentomax_' + numfilas1 + '" for="ndescuentomax_' + numfilas1 + '" Style="font-size: 14px;">Descuento Max.:</label></td><td align="Right"><input type="Number" value="0" id="ndescuentomax_' + numfilas1 + '" style="Width: 52px; font-size: 10px;"  min="0" pattern="d{12}" /></td></tr><tr><td style="font-size: 14px;">Vender:</td><td align="Left"><input type="Checkbox" id="cvender_' + numfilas1 + '" checked="true"/><label Id="lcvender_' + numfilas1 + '" for="cvender_' + numfilas1 + '" Style="font-size: 14px;">SI/NO</label></td></tr></table>';	
+}
+function fcreartbusuario(numfilas1, tbs){
+	tbs.innerHTML += '<table cellspacing="0" style="position:fixed; background:#697510; display:none;"  id="tbusuario_' + numfilas1 + '"><tr><td><input type="Radio" name="rusuario_' + numfilas1 + '" id="rtodos_' + numfilas1 + '"  onclick="fusuarios(this);" checked="true" /><label Id="lrtodos_' + numfilas1 + '" for="rtodos_' + numfilas1 + '" Style="font-size: 14px;">Todos</label></td></tr><tr><td><input type="Radio" name="rusuario_' + numfilas1 + '" id="rgrupo_' + numfilas1 + '"  onclick="fusuarios(this);" /><label Id="lrgrupo_' + numfilas1 + '" for="rgrupo_' + numfilas1 + '" Style="font-size: 14px;">Grupos</label></td></tr><tr><td><input type="Radio" name="rusuario_' + numfilas1 + '" id="rpersonalizado_' + numfilas1 + '"  onclick="fusuarios(this);" /><label Id="lrpersonalizado_' + numfilas1 + '" for="rpersonalizado_' + numfilas1 + '" Style="font-size: 14px;">Personalizado:</label></td></tr><tr><td><input type="Search" id="spersonalizado_' + numfilas1 + '" style="font-size: 10px" onblur="fucambio(this);"  disabled="" /></td></tr></table>';	
+}
+
+function fucambio(vid) { //onBlur del control de texto de USUARIO
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	
+	var vfuente = document.getElementById("tusuario_" + vfrag[1]); //control recuperar
+	vfuente.value = vid.value;
+}
+
+function fver(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	var vcontrol = "";
+	if (vfrag[0] == "tcategoria") {
+		vcontrol = "tdetalle_";
+	}
+	else if (vfrag[0] == "npreciou") {
+		vcontrol = "tventa_";
+	}
+	else if (vfrag[0] == "tusuario") {
+		vcontrol = "tbusuario_";
+	}
+	var vfuente = document.getElementById(vcontrol + vfrag[1]); //control recuperar
+	vfuente.value = vid.value;
+	
+	fcaltotal(vid); //CALCULAR
+}
+
+function fusuarios(vid) {
+	var vdividir = vid.id;
+	var vfrag = vdividir.split("_");
+	if (vfrag[0] == "rpersonalizado")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = false;
+		document.getElementById("tusuario_" + vfrag[1]).value = document.getElementById("spersonalizado_" + vfrag[1]).value;
+	}
+	if (vfrag[0] == "rtodos")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = true;
+		document.getElementById("tusuario_" + vfrag[1]).value = "todos";
+	}
+	if (vfrag[0] == "rgrupo")
+	{
+		document.getElementById("spersonalizado_" + vfrag[1]).disabled = false;
+		document.getElementById("tusuario_" + vfrag[1]).value = document.getElementById("spersonalizado_" + vfrag[1]).value;
+	}
+}
+
+function ffac_rec(vid) {
+	var vlabel = document.getElementById("lfactura");
+	//var vtableone = document.getElementById("tableone");
+	var vcaption = document.getElementById("ctableone");
+	if (vid.id == "rfac")
+	{
+		vlabel.innerHTML = " <b>-Factura:</b>";
+		//vtableone.summary = "FACTURA";
+		vcaption.innerHTML = "FACTURA";
+		document.getElementById("nfactura").placeholder = "# Factura";
+	}else{
+		vlabel.innerHTML = " <b>-Recibo:</b>";
+		//vtableone.symmary = "RECIBO";
+		vcaption.innerHTML = "RECIBO";
+		document.getElementById("nfactura").placeholder = "# Recibo";
+	}
+}
+
+function finicio() {
+	var currentTime = new Date();
+	var vmes = currentTime.getMonth() + 1;
+	var vdia = currentTime.getDate();
+	if (vmes < 10)
+	{
+		vmes = "0" + vmes;
+	}
+	if (vdia < 10)
+	{
+		vdia = "0" + vdia;
+	}
+	var vfecha = currentTime.getFullYear() + "-" + vmes + "-" + vdia;
+	document.getElementById("dfecha").value = vfecha;
+}
