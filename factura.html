@@ -1,0 +1,201 @@
+<!-- comentario en html5 -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<title>Modulo Inventario</title>
+<meta charset="UTF-8" />
+<link rel="Shortcut Icon" href="favicon.ico" />
+<link rel="stylesheet" href="principal.css" />
+<script src="interfaz.js"></script>
+<script src="calculos.js"></script>
+<style>p.indent{ padding-left: 3.5em }<!-- tabular todas las etiquetas "p" --></style>
+</head>
+<body style="font-family: Monospace;font-size:10pt;" onload="finicio();">
+	
+	<details open><summary style="Width: 855px; background: #FBC;">Contenido</summary>
+	<fieldset class="field" style="Width: 830px;"><legend class="legend" >Facturaci&oacute;n</legend>
+		<input type="radio" name="fac_recibo" checked="true" id="rfac" onclick="ffac_rec(this);" /><label for="rfac">Factura</label><input type="radio" name="fac_recibo" id="rrecibo" onClick="ffac_rec(this);" /><label for="rrecibo">Recibo</label><label for="dfecha" > | Fecha: </label><input type="Date" id="dfecha" style="Width: 115px;" />
+		<label for="lusuario"> <u>Usuario:</u></label>
+		<select id="lusuario">
+			<option>Rmollo</option>
+			<option>Todos</option>
+		</select>
+		<input id="bcarga" type="Button" value="Cargar" />
+		<progress value="100" max="100">Estado</progress>
+	</fieldset>
+	</details>
+	
+	<br />
+	<fieldset class="field" style="Width: 830px;"><legend class="legend" >Zona</legend>
+		<label for="llote_0"><b>Lote:</b></label><input id="llote_0" type="text" value="1" list="llotes_0" style="Width: 50px;" />
+		<datalist id="llotes_0">
+			<option value="2">
+			<option value="3">
+		</datalist>
+
+		<label for="lpais"> |-<u>Pais:</u></label>
+		<select  id="lpais">
+			<option>Bolivia</option>
+		</select>
+		<label for="lreg"><u>Regional:</u></label>
+		<select  id="lreg">
+			<option>Santa Cruz</option>
+		</select>
+		<label for="lsuc"><u>Sucursal:</u></label>
+		<select  id="lsuc">
+			<option>1</option>
+			<option>2</option>
+		</select>
+	</fieldset>
+	<br />
+	<fieldset class="field" style="Width: 830px;"><legend class="legend" >Razon Social</legend>
+		<table class="tableone1" id="tableone1" CellSpacing="0" cellpadding="0" summary="FACTURA">
+			<tr style="text-align:Left;">
+				<th style="width:125px;" ><label for="sid"><u><b>NIT/C.I. :</b></u></label></th>
+				<th style="width:113px;" ><input type="Search" id="sid"  required="true" autofocus="true" style="Width: 99px;font-weight:bold;" /></th>
+				<th style="width:112px;" ><label for="sempresa">  Empresa:</label></th>
+				<th style="width:240px;" ><input type="Search" id="sempresa" style="Width: 200px;" /><input id="bdetalle" type="Button" value="D" /></th>
+				<th style="width:120px;" ><label for="nfactura" id="lfactura"><b> -<u>Factura:</u></b></label></th>
+				<th style="width:92px;" ><input type="Number" id="nfactura" PlaceHolder="# Factura" Min="0" pattern="d{12}" required="true" style="Width: 115px;" /></th>
+			</tr>
+			<tr style="text-align:Left;">
+				<th style="width:125px;" ><label for="nautorizacion" id="lautorizacion">Autorización #:</label></th>
+				<th style="width:113px;" ><input type="Number" id="nautorizacion"  min="0" pattern="d{12}" style="Width: 99px;" /></th>
+				<th style="width:112px;" ><label for="sccontrol" id="lccontrol">Cod. Control:</label></th>
+				<th style="width:240px;"><input type="Search" id="sccontrol" style="Width: 200px;" /></th>
+				<th style="width:120px;" ><label for="dflemision" id="lflemision">F. L. Emision:</label></th>
+				<th style="width:92px;" ><input type="Date" id="dflemision" style="Width: 115px;" /></th>
+			</tr>
+		</table>
+	</fieldset>
+	<br />
+	<table class="tableone" id="tableone" CellSpacing="0" cellpadding="0" summary="FACTURA">
+		<caption Id="ctableone">FACTURA</caption>
+		<thead>	<!-- La cabeza de la tabla -->
+		<tr>
+			<th class="th1" scope="col">ITEM</th>
+			<th class="th2" scope="col">CODIGO</th>
+			<th class="th3" scope="col">CANT.</th>
+			<th class="th4" scope="col">DESCRIPCION</th>
+			<th class="th5" scope="col">DETALLES</th>
+			<th class="th6" scope="col">VENTA</th>
+			<th class="th7" scope="col">USUARIO</th>
+
+			<th class="th8" scope="col">TOTAL</th>
+			<th class="th9" style="text-align: left;" onclick="fcrearfilacelda();" scope="col">[+]</th>
+		</tr>
+		</thead>
+		<tfoot>	<!-- Pie de la tabla -->
+			<tr>
+				<td></td><td></td><td></td><td></td><td></td><td align="right" style="font-weight: bold;"  id="tdventa">0</td><td></td><td Id="tdtotal" Align="Right" Style="font-weight: bold;">0</td><td></td>
+			</tr>
+		</tfoot>
+		<tbody>
+			<tr><td colspan="10">
+
+			<table cellpadding="0" cellspacing="0" class="tabletwo"  id="tabletwo">
+			<tr>
+				<td class="td1" id="tbitem_0" scope="row" Align="Center">1</td>
+				<td class="td2"><input type="Text" id="tcodigo_0" style="Width: 87px; text-align: center; " /></td>
+				<td class="td3"><input type="Number" value="1" id="ncant_0" style="Width: 60px; text-align: right;" onblur="fcaltotal(this);" min="1" pattern="d{12}" /></td>
+				<td class="td4"><textarea rows="2"  id="tadesc_0" style="Width: 165px;resize:none;"></textarea></td>
+				<td class="td5"><input type="Button" id="tdetalle_0" style="Width: 130px;"  readonly="true" onclick="fmostrar(this);" /></td>
+				<td class="td6"><input type="Button" value="0" id="tventa_0" style="Width: 80px;"  readonly="true" onclick="fmostrar(this);" /></td>
+				<td class="td7"><input type="Button" value="todos" id="tusuario_0" style="Width: 80px;" readonly="true" onclick="fmostrar(this);" /></td>
+
+				<td class="td8"><input type="Text" value="0" id="ttotal_0" style="Width: 90px; text-align: right; " readonly="true" /></td>
+				<td class="td9"><input type="Button" value="x" id="0"  onclick="feliminarfila(this);" /></td>
+			</tr>
+			</table>
+
+			</td>
+			</tr>
+		</tbody>
+	</table>
+	<input type="Button" value="GUARDAR" id="bguardar" /><input type="Button" value="ACEPTAR" id="baceptar" />
+	<!-- Lo que sigue a continuación son tablas -->
+	<div id="mistablas">
+	<table cellpadding="0" cellspacing="0" style="position:fixed; background:#697510; display:none;" id="tbdetalle_0">
+		<tr>
+			<td><label id="ltcodint_0" for="tcodint_0" Style="font-size: 14px;">Cod_Int:</label></td>
+			<td><input type="Text" id="tcodint_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltcategoria_0" for="tcategoria_0" Style="font-size: 14px; font-weight: bold;">Categoria:</label></td>
+			<td><input type="Text" id="tcategoria_0" style="Width: 87px; font-size: 10px;" onblur="fver(this);" list="lcategoria" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltmedida_0" for="tmedida_0" Style="font-size: 14px; font-weight: bold;">Medida:</label></td>
+			<td><input type="Text" id="tmedida_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltdetalle_0" for="tcdetalle_0" Style="font-size: 14px; font-weight: bold;">Detalle:</label></td>
+			<td><input type="Text" id="tcdetalle_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltmarca_0" for="tmarca_0" style="font-size: 14px; font-weight: bold;">Marca:</label></td>
+			<td><input type="Text" id="tmarca_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltmade_0" for="tmade_0" style="font-size: 14px;">Made In:</label></td>
+			<td><input type="Text" id="tmade_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltmarcas_0" for="tmarcas_0" style="font-size: 14px;">Marcas:</label></td>
+			<td><input type="Text" id="tmarcas_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltmodelo_0" for="tmodelo_0" style="font-size: 14px;">Modelo:</label></td>
+			<td><input type="Text" id="tmodelo_0" style="Width: 87px; font-size: 10px;" /></td>
+		</tr>
+		<tr>
+			<td><label id="ltano_0" for="tano_0" style="font-size: 14px;">A&ntilde;o:</label></td>
+			<td><input type="Number" value="1990" id="tano_0" style="Width: 87px; font-size: 10px;" min="1950" pattern="d{12}" /></td>
+		</tr>
+	</table>
+
+	<table cellpadding="0" cellspacing="0" style="position:fixed; background:#697510; display:none;"  id="tbventa_0">
+		<tr>
+			<td><label id="lnpreciou_0" for="npreciou_0" style="font-size: 14px;">Precio Unitario:</label></td>
+			<td style="text-align: right; "><input type="Number" value="0" id="npreciou_0" style="Width: 52px; font-size: 10px;" onblur="fver(this);" min="0" pattern="d{12}" /></td>
+		</tr>
+		<tr>
+			<td><label id="lnpreciomayor_0" for="npreciomayor_0" style="font-size: 14px;">Precio x Mayor:</label></td>
+			<td style="text-align: right; "><input type="Number" value="0" id="npreciomayor_0" style="Width:52px; font-size: 10px;" min="0" pattern="d{12}" /></td>
+		</tr>
+		<tr>
+			<td><label id="lncantmayor_0" for="ncantmayor_0" style="font-size: 14px;">Cant. x Mayor:</label></td>
+			<td align="right"><input type="Number" value="0" id="ncantmayor_0" style="Width: 52px; font-size: 10px;" min="0" pattern="d{12}" /></td>
+		</tr>
+		<tr>
+			<td><label id="lndescuentomax_0" for="ndescuentomax_0" Style="font-size: 14px;">Descuento Max.:</label></td>
+			<td align="Right"><input type="Number" value="0" id="ndescuentomax_0" style="Width: 52px; font-size: 10px;" min="0" pattern="d{12}" /></td>
+		</tr>
+		<tr>
+			<td style="font-size: 14px;">Vender:</td>
+			<td align="Left"><input type="Checkbox" id="cvender_0" checked="true" /><label id="lcvender_0" for="cvender_0" style="font-size: 14px;">SI/NO</label></td>
+		</tr>
+	</table>
+
+	<table cellspacing="0" style="position:fixed; background:#697510; display:none;"  id="tbusuario_0">
+		<tr>
+			<td><input type="Radio" name="rusuario_0" id="rtodos_0" onclick="fusuarios(this);" checked="true" /><label id="lrtodos_0" for="rtodos_0" style="font-size: 14px;">Todos</label></td>
+		</tr>
+		<tr>
+			<td><input type="Radio" name="rusuario_0" id="rgrupo_0" onclick="fusuarios(this);" /><label Id="lrgrupo_0" for="rgrupo_0" style="font-size: 14px;">Grupos</label></td>
+		</tr>
+		<tr>
+			<td><input type="Radio" name="rusuario_0" id="rpersonalizado_0" onclick="fusuarios(this);" /><label id="lrpersonalizado_0" for="rpersonalizado_0" style="font-size: 14px;">Personalizado:</label></td>
+		</tr>
+		<tr>
+			<td><input type="Search" id="spersonalizado_0" style="font-size: 10px" onblur="fucambio(this);" disabled="" /></td>
+		</tr>
+	</table>
+	</div>
+	<!-- Rellenado de listas -->
+	<datalist id="lcategoria">
+		<option value="Reten">
+		<option value="Rodamiento">
+	</datalist>
+</body>
+</html>

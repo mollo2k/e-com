@@ -1,0 +1,26 @@
+/* Comentario para css
+	16px = 12pt = 100% = 1em
+	2em es el doble o el 200% */
+.tableone {border-collapse:collapse;}
+.tabletwo {border-collapse:collapse;}
+.th1, .td1 {width:50px;}
+.th2, .td2 {width:96px;}
+.th3, .td3 {width:70px;}
+.th4, .td4 {width:132px;}
+.th5, .td5 {width:98px;}
+.th6, .td6 {width:83px;}
+.th7, .td7 {width:90px;}
+
+.th8, .td8 {width:98px;}
+.th9 {width:48px;}
+.td9 {width:28px;}
+
+.tableone {background:#697210; border:1px solid #000; color:#fff;}
+.tableone td {border:1px solid #000; color:#fff;}
+.tableone tbody {background:#fff; color:#000;}
+.tableone caption {background:#fff; color:#697210; font-size:1.2em; margin:0 auto;}
+.tabletwo td {background:#aaa222; color:#000;}
+.tableone th, .tabletwo th {text-align:Center; border:1px solid #000; color:#000;}
+.tabletwo tr.dk td {background:#ddd; color:#000;}
+
+.innerb {height:100px; overflow:auto;}
